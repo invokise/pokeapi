@@ -20,46 +20,43 @@ class SearchResult extends StatelessWidget {
           return Text('Pokemons not founded: ${state.error.toString()}!');
         }
         if (state is SearchPokemonSuccessState) {
-          return ListView.builder(
-            itemCount: 1,
-            itemBuilder: (context, index) {
-              return SizedBox(
-                child: Card(
-                  color: Colors.white38,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'ID: ${state.pokemon.id.toString()}',
-                          style: AppTextStyles.white18,
-                        ),
-                        Text(
-                          'Name: ${state.pokemon.name.toString()}',
-                          style: AppTextStyles.white18,
-                        ),
-                        Text(
-                          'Height: ${state.pokemon.height.toString()}',
-                          style: AppTextStyles.white18,
-                        ),
-                        Text(
-                          'Weight: ${state.pokemon.weight.toString()}',
-                          style: AppTextStyles.white18,
-                        ),
-                        Text(
-                          'Abilities: ${state.pokemon.abilities![index].ability!.name.toString()}',
-                          style: AppTextStyles.white18,
-                        ),
-                      ],
+          final _index = state.pokemon.abilities!.length - 1;
+          return SizedBox(
+            width: 400,
+            child: Card(
+              color: Colors.white38,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'ID: ${state.pokemon.id.toString()}',
+                      style: AppTextStyles.white18,
                     ),
-                  ),
+                    Text(
+                      'Name: ${state.pokemon.name.toString()}',
+                      style: AppTextStyles.white18,
+                    ),
+                    Text(
+                      'Height: ${state.pokemon.height.toString()}',
+                      style: AppTextStyles.white18,
+                    ),
+                    Text(
+                      'Weight: ${state.pokemon.weight.toString()}',
+                      style: AppTextStyles.white18,
+                    ),
+                    Text(
+                      'Abilities: ${state.pokemon.abilities![_index].ability!.name.toString()}',
+                      style: AppTextStyles.white18,
+                    ),
+                  ],
                 ),
-              );
-            },
+              ),
+            ),
           );
         } else {
           return const Text('Error!');

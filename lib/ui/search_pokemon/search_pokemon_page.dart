@@ -13,8 +13,8 @@ class SearchPokemonPage extends StatefulWidget {
 class _SearchPokemonPageState extends State<SearchPokemonPage> {
   @override
   Widget build(BuildContext context) {
-    final textEditingController = TextEditingController();
-    final pokemonBloc = BlocProvider.of<SearchPokemonBloc>(context);
+    final _textEditingController = TextEditingController();
+    final _pokemonBloc = BlocProvider.of<SearchPokemonBloc>(context);
     final _formKey = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(
@@ -36,7 +36,7 @@ class _SearchPokemonPageState extends State<SearchPokemonPage> {
                       }
                       return null;
                     },
-                    controller: textEditingController,
+                    controller: _textEditingController,
                     decoration: InputDecoration(
                       hintText: 'Enter pokemon name',
                       border: OutlineInputBorder(
@@ -57,8 +57,8 @@ class _SearchPokemonPageState extends State<SearchPokemonPage> {
                       ),
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          pokemonBloc.add(SearchPokemonLoadedEvent(
-                              textEditingController.text.toLowerCase()));
+                          _pokemonBloc.add(SearchPokemonLoadedEvent(
+                              _textEditingController.text.toLowerCase()));
                         }
                       },
                       child: const Text('Search'),
@@ -70,9 +70,7 @@ class _SearchPokemonPageState extends State<SearchPokemonPage> {
             const SizedBox(
               height: 30,
             ),
-            const Flexible(
-              child: SearchResult(),
-            ),
+            const SearchResult(),
           ],
         ),
       ),

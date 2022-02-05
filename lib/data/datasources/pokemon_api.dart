@@ -5,25 +5,25 @@ import 'package:pokeapi/data/models/pokemon_model.dart';
 import 'package:http/http.dart' as http;
 
 class PokemonAPI {
-  static const baseUrl = 'https://pokeapi.co/api/v2/pokemon/';
+  static const _baseUrl = 'https://pokeapi.co/api/v2/pokemon/';
   Future<Pokemon> searchPokemon(String name) async {
-    final response = await http.get(Uri.parse(baseUrl + name));
+    final _response = await http.get(Uri.parse(_baseUrl + name));
 
-    if (response.statusCode == 200) {
-      return Pokemon.fromJson(jsonDecode(response.body));
+    if (_response.statusCode == 200) {
+      return Pokemon.fromJson(jsonDecode(_response.body));
     } else {
       throw Exception();
     }
   }
 
   Future<Pokemon> getRandomPokemon() async {
-    final random = Random();
-    final id = random.nextInt(1118);
-    final url = Uri.parse(baseUrl + id.toString());
-    final response = await http.get(url);
+    final _random = Random();
+    final _id = _random.nextInt(1118);
+    final _url = Uri.parse(_baseUrl + _id.toString());
+    final _response = await http.get(_url);
 
-    if (response.statusCode == 200) {
-      return Pokemon.fromJson(jsonDecode(response.body));
+    if (_response.statusCode == 200) {
+      return Pokemon.fromJson(jsonDecode(_response.body));
     } else {
       throw Exception();
     }

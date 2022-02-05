@@ -8,7 +8,7 @@ class OutputRandomPokemonPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final randomPokemonBloc = BlocProvider.of<RandomPokemonBloc>(context);
+    final _randomPokemonBloc = BlocProvider.of<RandomPokemonBloc>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Random Pokemon'),
@@ -21,7 +21,7 @@ class OutputRandomPokemonPage extends StatelessWidget {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  randomPokemonBloc.add(RandomPokemonLoadedEvent());
+                  _randomPokemonBloc.add(RandomPokemonLoadedEvent());
                 },
                 child: const Text('Output random pokemon'),
               ),
@@ -40,7 +40,7 @@ class OutputRandomPokemonPage extends StatelessWidget {
                     return Text('Error: ${state.error.toString()}!');
                   }
                   if (state is RandomPokemonLoadedState) {
-                    final index = state.pokemon.abilities!.length - 1;
+                    final _index = state.pokemon.abilities!.length - 1;
                     return SizedBox(
                       width: 400,
                       child: Card(
@@ -70,7 +70,7 @@ class OutputRandomPokemonPage extends StatelessWidget {
                                 style: AppTextStyles.white18,
                               ),
                               Text(
-                                'Abilities: ${state.pokemon.abilities![index].ability!.name.toString()}',
+                                'Abilities: ${state.pokemon.abilities![_index].ability!.name.toString()}',
                                 style: AppTextStyles.white18,
                               ),
                             ],
